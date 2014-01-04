@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<!--Header Include -->
+<?php
+include 'include/header.php';
+?>
+<body>
+<header>
+  <div class="container">
+    <h1>Spletna stran za tehnično pomoč</h1>
+    <%=render "static/menu_user" %>
+  </div>
+</header>
+<div class="container">
+<section class="main">
+  <h3>Zahtevki za pomoč</h3>
+  <p>
+    Spisek vaših zahtevkov za pomoč, ki so že bili rešeni, ali pa še čakajo na obdelavo.
+  </p>
+  <div id="searchbox" class="search">
+    <form action="<?php echo STATIC_URL; ?>zahtevki" method="post">
+      <p>
+        <label>Išči:</label>
+        <input type = "text" id="search" value="" name="search" placeholder = "Iskalni parameter" />
+        <button class="btn" type ="submit">Potrdi</button>
+      </p>
+    </form>
+  </div>
+  <table class="tabela-zahtevkov">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Težava</th>
+      <th scope="col">Datum</th>
+      <th scope="col">Področje</th>
+      <th scope="col">Agent</th>
+      <th scope="col">Status</th>
+      <th scope="col">Akcije</th>
+    </tr>
+    </thead>
+    <tbody id="table_body">
+    <% @tickets.each do |ticket| %>
+        <tr>
+          <td><%=ticket.id%></td>
+          <td><%=ticket.problem%></td>
+          <td><%=ticket.date%></td>
+          <td><%=ticket.podrocje%></td>
+          <td><%=ticket.admin%></td>
+          <td><%=ticket.state%></td>
+          <td><%= link_to 'Prikaži', uredi_path(ticket) %> <%= link_to 'Izbriši', izbrisi_path(ticket), method: :izbrisi, data: { confirm: 'Ste prepričani, da želite izbrisati zahtevek?' } %></td>
+          <td></td>
+        </tr>
+    <% end %>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7" rowspan="1"><a href="<%= dodaj_path %>">Dodaj zahtevek</a></td>
+    </tr>
+    </tfoot>
+  </table>
+</section>
+
+<!--Ticket details -->
+<section class="ticket-details">
+  <h3>Podrobnosti zahtevka</h3>
+  <p>
+    <strong>ID:</strong> <%=@edited_ticket.id %>
+  </p>
+  <p>
+    <strong>Težava:</strong> <%=@edited_ticket.problem %>
+  </p>
+  <p>
+    <strong>Datum:</strong>  <%=@edited_ticket.date %>
+  </p>
+  <p>
+    <strong>Področje težave:</strong> <%=@edited_ticket.podrocje %>
+  </p>
+  <p>
+    <strong>Opis težave:</strong> <%=@edited_ticket.description %>
+  </p>
+  <p>
+    <strong>Status:</strong> <%=@edited_ticket.state %>
+
+  </p>
+
+  <!-- Check user or admin -->
+
+  <!-- Admin -->
+
+  <!-- User -->
+
+  <!-- Different buttons based on ticket state -->
+  <form method="post" action="<?php echo STATIC_URL; ?>zahtevki/posodobi/<?php  echo $this->edit_ticket[0]['ticketid'];?>">
+    <% if @edited_ticket.state == 4%>
+    <input type='hidden' name='state' value='1'>
+    <button class='btn large'>Ponovno odpri primer</button>
+    <% else%>
+    <input type='hidden' name='state' value='4'>
+    <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button class='btn large'>Potrdi rešitev primera</button>
+    <% end%>
+  </form>
+  <!--Odzivi -->
+  <h3>Odziv agenta</h3>
+
+  <?php foreach($this->messages as $message){
+
+  if($message['privilegelvl']=="1"){
+  echo "<div class='chat client pull-right'>";
+  echo  "<p>";
+  echo  "<b>";
+  echo $message['date']," ",  $message['user'];
+  echo "</b>";
+  echo  "</p>";
+  echo  "<p>";
+  echo $message['content'];
+  echo  "</p>";
+  echo "</div>";
+  echo "<div class='clear'></div>";
+  }else{
+  echo "<div class='chat agent pull-left'>";
+  echo  "<p>";
+  echo  "<b>";
+  echo $message['date']," ",  $message['user'];
+  echo "</b>";
+  echo  "</p>";
+  echo  "<p>";
+  echo $message['content'];
+  echo  "</p>";
+  echo "</div>";
+  echo "<div class='clear'></div>";
+  }
+  }
+  ?>
+  <div class="nov-odgovor">
+    <form method="post" action="<?php echo STATIC_URL; ?>zahtevki/poslji/<?php  echo $this->edit_ticket[0]['ticketid'];?>">
+      <p>
+        <label>Novo sporočilo:</label>
+      <div class="clear"></div>
+      <textarea title="Vnesite sporočilo za naše strokovnjake. Odzvali se vam bodo najkasneje v 24urah." name="message" id="message" required placeholder="Sporočilo za tehnično pomoč"></textarea>
+      <br/><span id="message_error" class="error-report"></span>
+      </p>
+      <p>
+        <button class="btn" type="submit" id="submit">Pošlji</button>
+      </p>
+    </form>
+  </div>
+  <div class="clear"></div>
+</section>
+<!-- footer -->
+<%=render "static/footer" %>
+</div> <!--! end of #container -->
+</body>
+</html>

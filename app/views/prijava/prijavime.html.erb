@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+<section class="login">
+  <div class="container-login">
+    <h3 id="header">Prijava</h3>
+
+    <p id="login_text">
+      Vnesite uporabniško ime in geslo
+    </p>
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+    <form method="post" action="<%=prijava_newsession_path %>">
+      <p>
+        <label id="username_text">Uporabniško ime:</label>
+        <input type="text" maxlength="50" required autofocus name="username" id="username" placeholder="Uporabniško ime"/>
+        <br/><span id="username_error" class="error-report"></span>
+      </p>
+      <p>
+        <label id="password_text">Geslo:</label>
+        <input type="password" id="password" name="password" name="opis" required placeholder="Geslo"/>
+        <br/><span id="password_error" class="error-report"></span>
+      </p>
+      <p>
+        <label for = "remember">Zapomni si me</label>
+        <input type="checkbox" id="remember" name="remember" value="yes"/>
+      </p>
+      <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <p>
+        <button class="btn" type ="submit" id="submit">Prijava</button>
+      </p>
+    </form>
+  </div>
+</section>
+<!-- footer -->
+<div class="container-login">
+  <footer>
+    Vse pravice pridržane (c) 2013 <a href="http://www.divjak.si">divjak.si</a>
+    <!--Lang Change -->
+    <div id="lang_change">
+      <a href="" id="english">Angleščina</a> | <a href="" id="slovenian">Slovenščina</a>
+    </div>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  </footer>
+</div> <!--! end of #container -->
+</body>
+</html>

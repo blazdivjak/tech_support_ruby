@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  problem: MyString
+  date: 2014-01-04
+  type: 
+  description: MyString
+  phone: MyString
+  level: 1
+  adminid: 1
+  belongs_to: MyString
+  user: MyString
+  state: MyString
+  string: MyString
+
+two:
+  problem: MyString
+  date: 2014-01-04
+  type: 
+  description: MyString
+  phone: MyString
+  level: 1
+  adminid: 1
+  belongs_to: MyString
+  user: MyString
+  state: MyString
+  string: MyString

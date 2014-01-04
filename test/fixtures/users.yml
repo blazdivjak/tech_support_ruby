@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: 
+  username: MyString
+  privilegelvl: 1
+  phone: 
+  password: 
+  phone: 
+
+two:
+  name: MyString
+  email: 
+  username: MyString
+  privilegelvl: 1
+  phone: 
+  password: 
+  phone: 

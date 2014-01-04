@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3013524422">
+    <data-source source="LOCAL" name="Rails rubyrubyrubyrubywohohoho: development" product="MySQL" version="5.5.32-0ubuntu7" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.26 ( Revision: ${bzr.revision-id} )" uuid="689fd0c9-7b77-433e-aca4-b417eac5d73e">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://ubuntu/blaz_b2</jdbc-url>
+      <user-name>blaz</user-name>
+      <user-password>dfc7dfc9df9bdf9edfc6dfc0df9bdf9adf9adf9a</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/mysql-connector-java-5.1.26-bin.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails rubyrubyrubyrubywohohoho: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="acc9dce7-4124-40e4-a344-0687053bdbf9">
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://mysql.lrk.si/blaz_b2</jdbc-url>
+      <user-name>blaz</user-name>
+      <user-password>dfc7dfc9df9bdf9edfc6dfc0df9bdf9adf9adf9a</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/mysql-connector-java-5.1.26-bin.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails rubyrubyrubyrubywohohoho: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="d92c7889-76fa-4555-9710-0265fb588b5e">
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://mysql.lrk.si/blaz_b2</jdbc-url>
+      <user-name>blaz</user-name>
+      <user-password>dfc7dfc9df9bdf9edfc6dfc0df9bdf9adf9adf9a</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/mysql-connector-java-5.1.26-bin.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+

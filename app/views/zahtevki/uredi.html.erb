@@ -46,7 +46,35 @@ include 'include/header.php';
           <td><%=ticket.date%></td>
           <td><%=ticket.podrocje%></td>
           <td><%=ticket.admin%></td>
-          <td><%=ticket.state%></td>
+          <!--<td><%=ticket.state%></td>-->
+          <td>
+            <% if session[:level] == 1%>
+                <% if ticket.state == "1"%>
+                    Čaka na odziv agenta
+                <% elsif ticket.state == "2" %>
+                    V obdelavi
+                <% elsif ticket.state == "3"%>
+                    Čaka na vaš odziv
+                <% elsif ticket.state == "4"%>
+                    Zaključen
+                <% else %>
+                    Neveljavno stanje
+                <% end%>
+            <% else %>
+                <% if ticket.state == "1"%>
+                    Čaka na odziv agenta
+                <% elsif ticket.state == "2" %>
+                    V obdelavi
+                <% elsif ticket.state == "3"%>
+                    Čaka na odziv uporabnika
+                <% elsif ticket.state == "4"%>
+                    Zaključen
+                <% else %>
+                    Neveljavno stanje
+                <% end%>
+            <% end%>
+          </td>
+
           <td><%= link_to 'Prikaži', uredi_path(ticket) %> <%= link_to 'Izbriši', izbrisi_path(ticket), method: :izbrisi, data: { confirm: 'Ste prepričani, da želite izbrisati zahtevek?' } %></td>
           <td></td>
         </tr>
@@ -81,65 +109,124 @@ include 'include/header.php';
     <strong>Opis težave:</strong> <%=@edited_ticket.description %>
   </p>
   <p>
-    <strong>Status:</strong> <%=@edited_ticket.state %>
+    <strong>Status:</strong>
+
+  <% if session[:level] == 1%>
+      <% if @edited_ticket.state == "1"%>
+            Čaka na odziv agenta
+      <% elsif @edited_ticket.state == "2" %>
+            V obdelavi
+      <% elsif @edited_ticket.state == "3"%>
+            Čaka na vaš odziv
+      <% elsif @edited_ticket.state == "4"%>
+            Zaključen
+      <% else %>
+            Neveljavno stanje
+      <% end%>
+  <% else %>
+      <% if @edited_ticket.state == "1"%>
+          Čaka na odziv agenta
+      <% elsif @edited_ticket.state == "2" %>
+          V obdelavi
+      <% elsif @edited_ticket.state == "3"%>
+          Čaka na odziv uporabnika
+      <% elsif @edited_ticket.state == "4"%>
+          Zaključen
+      <% else %>
+          Neveljavno stanje
+      <% end%>
+  <% end%>
 
   </p>
+  <% if session[:level] != 1%>
+      <h3>Kontaktni podatki uporabnika</h3>
+      <p>
+        <strong>Uporabniško ime:</strong> <%= @ticket_user.username %>
+      </p>
+      <p>
+        <strong>Mail:</strong> <%= @ticket_user.email %>
+      </p>
+      <p>
+        <strong>Telefon:</strong> <%= @ticket_user.phone %>
+      </p>
+  <% end%>
 
   <!-- Check user or admin -->
-
-  <!-- Admin -->
-
+  <% if session[:level] == 1%>
   <!-- User -->
+      <!-- Different buttons based on ticket state -->
 
-  <!-- Different buttons based on ticket state -->
-  <form method="post" action="<?php echo STATIC_URL; ?>zahtevki/posodobi/<?php  echo $this->edit_ticket[0]['ticketid'];?>">
-    <% if @edited_ticket.state == 4%>
-    <input type='hidden' name='state' value='1'>
-    <button class='btn large'>Ponovno odpri primer</button>
-    <% else%>
-    <input type='hidden' name='state' value='4'>
-    <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <button class='btn large'>Potrdi rešitev primera</button>
+        <% if @edited_ticket.state == "4"%>
+        <form method="post" action="<%=odpri_path(@edited_ticket) %>">
+            <input type='hidden' name='state' value='1'>
+            <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <button class='btn large'>Ponovno odpri primer</button>
+        <% else%>
+        <form method="post" action="<%=potrdi_path(@edited_ticket) %>">
+            <input type='hidden' name='state' value='4'>
+            <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <button class='btn large'>Potrdi rešitev primera</button>
+        <% end%>
+      </form>
+  <% else %>
+ <!-- Admin -->
+    <!-- Different buttons based on ticket state -->
+
+    <% if @edited_ticket.state != "4" and @edited_ticket.admin != session[:user_id]%>
+    <form method="post" action="<%=prevzemi_path(@edited_ticket) %>">
+        <input type='hidden' name='state' value='2'>
+        <input type='hidden' name='owner' value='ownthisticket'>
+          <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button class='btn large'>Prevzemi primer</button>
+    </form>
+    <% elsif @edited_ticket.level != 3%>
+    <form method="post" action="<%=eskaliraj_path(@edited_ticket) %>">
+        <input type='hidden' name='escalate' value='3'>
+        <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button class='btn large'>Eskaliraj</button>
+    </form>
     <% end%>
-  </form>
+
+  <% end%>
   <!--Odzivi -->
   <h3>Odziv agenta</h3>
-
-  <?php foreach($this->messages as $message){
-
-  if($message['privilegelvl']=="1"){
-  echo "<div class='chat client pull-right'>";
-  echo  "<p>";
-  echo  "<b>";
-  echo $message['date']," ",  $message['user'];
-  echo "</b>";
-  echo  "</p>";
-  echo  "<p>";
-  echo $message['content'];
-  echo  "</p>";
-  echo "</div>";
-  echo "<div class='clear'></div>";
-  }else{
-  echo "<div class='chat agent pull-left'>";
-  echo  "<p>";
-  echo  "<b>";
-  echo $message['date']," ",  $message['user'];
-  echo "</b>";
-  echo  "</p>";
-  echo  "<p>";
-  echo $message['content'];
-  echo  "</p>";
-  echo "</div>";
-  echo "<div class='clear'></div>";
-  }
-  }
-  ?>
+  <% @messages.each do |message| %>
+      <% if message.privilegelvl==1%>
+        <div class='chat client pull-right'>
+        <p>
+        <b>
+        <!--echo $message['date']," ",  $message['user'];-->
+        <%=message.date %>, <%=message.user %>
+        </b>
+        </p>
+        <p>
+        <%=message.content %>
+        <!--echo $message['content'];-->
+        </p>
+        </div>
+        <div class='clear'></div>
+      <%else%>
+        <div class='chat agent pull-left'>
+        <p>
+        <b>
+        <%=message.date %>, <%=message.user %>
+        </b>
+        </p>
+        <p>
+        <%=message.content %>
+        <!--echo $message['content'];-->
+        </p>
+        </div>
+        <div class='clear'></div>
+      <%end%>
+  <%end%>
   <div class="nov-odgovor">
-    <form method="post" action="<?php echo STATIC_URL; ?>zahtevki/poslji/<?php  echo $this->edit_ticket[0]['ticketid'];?>">
+    <form method="post" action="<%=poslji_path(@edited_ticket) %>">
       <p>
         <label>Novo sporočilo:</label>
       <div class="clear"></div>
       <textarea title="Vnesite sporočilo za naše strokovnjake. Odzvali se vam bodo najkasneje v 24urah." name="message" id="message" required placeholder="Sporočilo za tehnično pomoč"></textarea>
+      <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
       <br/><span id="message_error" class="error-report"></span>
       </p>
       <p>

@@ -49,7 +49,34 @@ include 'include/header.php';
             <td><%=ticket.date%></td>
             <td><%=ticket.podrocje%></td>
             <td><%=ticket.admin%></td>
-            <td><%=ticket.state%></td>
+            <!--<td><%=ticket.state%></td>-->
+            <td>
+              <% if session[:level] == "1"%>
+                  <% if ticket.state == "1"%>
+                      Čaka na odziv agenta
+                  <% elsif ticket.state == "2" %>
+                      V obdelavi
+                  <% elsif ticket.state == "3"%>
+                      Čaka na vaš odziv
+                  <% elsif ticket.state == "4"%>
+                      Zaključen
+                  <% else %>
+                      Neveljavno stanje
+                  <% end%>
+              <% else %>
+                  <% if ticket.state == "1"%>
+                      Čaka na odziv agenta
+                  <% elsif ticket.state == "2" %>
+                      V obdelavi
+                  <% elsif ticket.state == "3"%>
+                      Čaka na odziv uporabnika
+                  <% elsif ticket.state == "4"%>
+                      Zaključen
+                  <% else %>
+                      Neveljavno stanje
+                  <% end%>
+              <% end%>
+            </td>
             <td><%= link_to 'Prikaži', uredi_path(ticket) %> <%= link_to 'Izbriši', izbrisi_path(ticket), method: :izbrisi, data: { confirm: 'Ste prepričani, da želite izbrisati zahtevek?' } %></td>
             <td></td>
           </tr>

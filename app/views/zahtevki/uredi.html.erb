@@ -18,10 +18,11 @@ include 'include/header.php';
     Spisek vaših zahtevkov za pomoč, ki so že bili rešeni, ali pa še čakajo na obdelavo.
   </p>
   <div id="searchbox" class="search">
-    <form action="<?php echo STATIC_URL; ?>zahtevki" method="post">
+    <form action="<%=zahtevki_search_path %>" method="post">
       <p>
         <label>Išči:</label>
         <input type = "text" id="search" value="" name="search" placeholder = "Iskalni parameter" />
+        <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
         <button class="btn" type ="submit">Potrdi</button>
       </p>
     </form>
@@ -45,7 +46,14 @@ include 'include/header.php';
           <td><%=ticket.problem%></td>
           <td><%=ticket.date%></td>
           <td><%=ticket.podrocje%></td>
-          <td><%=ticket.admin%></td>
+          <!--<td><%=ticket.admin%></td>-->
+          <td>
+            <% @users.each do |user| %>
+                <% if user.id == ticket.admin%>
+                    <%=user.name %>
+                <%end%>
+            <%end%>
+          </td>
           <!--<td><%=ticket.state%></td>-->
           <td>
             <% if session[:level] == 1%>
@@ -84,7 +92,11 @@ include 'include/header.php';
     </tbody>
     <tfoot>
     <tr>
-      <td colspan="7" rowspan="1"><a href="<%= dodaj_path %>">Dodaj zahtevek</a></td>
+      <% if session[:level] == 1%>
+          <td colspan="7" rowspan="1"><a href="<%= dodaj_path %>">Dodaj zahtevek</a></td>
+      <% else %>
+          <td colspan="7" rowspan="1"><a href="<%= dodaj_admin_path %>">Dodaj zahtevek</a></td>
+      <%end%>
     </tr>
     </tfoot>
   </table>

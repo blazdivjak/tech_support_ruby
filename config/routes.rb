@@ -7,18 +7,21 @@ Ruby::Application.routes.draw do
   get "zahtevki/uredi/:id", to: 'zahtevki#uredi', as: 'uredi'
   post "zahtevki/izbrisi/:id", to: 'zahtevki#izbrisi', as: 'izbrisi'
   #get "zahtevki/potrdi"
-  #get "zahtevki/prevzemi"
+  get "zahtevki", to: 'zahtevki#pregled', as: 'zahtevki'
+  post "zahtevki/prikazi", to: 'zahtevki#pregled', as: 'zahtevki_search'
   post "zahtevki/potrdi/:id", to: 'zahtevki#potrdi', as: 'potrdi'
   post "zahtevki/odpri/:id", to: 'zahtevki#odpri', as: 'odpri'
   post "zahtevki/prevzemi/:id", to: 'zahtevki#prevzemi', as: 'prevzemi'
   post "zahtevki/eskaliraj/:id", to: 'zahtevki#eskaliraj', as: 'eskaliraj'
   post "zahtevki/poslji/:id", to: 'zahtevki#poslji', as: 'poslji'
+  post "zahtevki/new", to: 'zahtevki#new', as: 'new'
   #get "zahtevki/eskaliraj"
   get "front_page/index"
 
   root  'front_page#index'
   match 'dodaj',   to: 'zahtevki#dodaj',   via: 'get'
-  match 'zahtevki',   to: 'zahtevki#pregled',   via: 'get'
+  match 'dodaj_admin',   to: 'zahtevki#dodaj_admin',   via: 'get'
+  #match 'zahtevki',   to: 'zahtevki#pregled',   via: 'get'
   #match 'uredi',   to: 'zahtevki#uredi',   via: 'get'
   #match 'izbrisi',   to: 'zahtevki#izbrisi',   via: 'get'
   #match 'potrdi',   to: 'zahtevki#potrdi',   via: 'get'

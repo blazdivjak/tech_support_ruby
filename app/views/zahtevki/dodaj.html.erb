@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <!--Header Include -->
-<?php
-include 'include/header.php';
-?>
 <body>
 <header>
   <div class="container">
@@ -17,10 +14,10 @@ include 'include/header.php';
     <p>
       Vnesite potrebne podatke, ki jih bodo naši tehniki uporabili pri reševanju vaše težave. Pomembno je, da vnesete telefonsko številko, na katero vas lahko kontaktirajo za dodatne informacije.
     </p>
-    <form id="prijava_tezave" method="post" action="<?php echo STATIC_URL; ?>prijava_tezave/dodaj">
+    <form id="prijava_tezave" method="post" action="<%=new_path%>">
       <p>
         <label>Težava:</label>
-        <input type="text" maxlength="50" required autofocus name="kratek_opis" value="" id="kratek_opis" placeholder="Kratek opis težave"/> <span id="kratek_opis_error" class="error-report"><?php echo $this->errors['kratek_opis']; ?></span>
+        <input type="text" maxlength="50" required autofocus name="kratek_opis" value="" id="kratek_opis" placeholder="Kratek opis težave"/> <span id="kratek_opis_error" class="error-report"></span>
       </p>
 
       <!--Staro HTML5, nekateri brskalniki ne prikazujejo -->
@@ -30,7 +27,7 @@ include 'include/header.php';
       </p>-->
       <p>
         <label>Datum pričetka težave:</label>
-        <input type ="text" required id="datepicker" value="" placeholder="dd/mm/llll" name="date"/> <span id="datepicker_error" class="error-report"><?php echo $this->errors['datum']; ?></span>
+        <input type ="text" required id="datepicker" value="" placeholder="dd/mm/llll" name="date"/> <span id="datepicker_error" class="error-report"></span>
       </p>
 
       <!--Staro HTML5, nekateri brskalniki ne prikazujejo -->
@@ -48,11 +45,11 @@ include 'include/header.php';
       </p>-->
       <p>
         <label for = "podrocje">Področje težave:</label>
-        <input id="podrocje" value="" name="podrocje" /> <span id="podrocje_error" class="error-report"><?php echo $this->errors['podrocje']; ?></span>
+        <input id="podrocje" value="" name="podrocje" /> <span id="podrocje_error" class="error-report"></span>
       </p>
       <p>
         <label>Opis težave:</label>
-        <textarea name="opis" id="opis" value="" required placeholder="Vnesite podroben opis težave"></textarea> <span id="opis_error" class="error-report"><?php echo $this->errors['opis']; ?></span>
+        <textarea name="opis" id="opis" value="" required placeholder="Vnesite podroben opis težave"></textarea> <span id="opis_error" class="error-report"></span>
       </p>
       <!--Staro HTML5, nekateri brskalniki ne prikazujejo -->
       <!--<p>
@@ -61,7 +58,7 @@ include 'include/header.php';
       </p>-->
       <p>
         <label>Telefonska številka:</label>
-        <input type = "text" placeholder = "### ###-###" value="" name="tel" id="tel"/> <span id="tel_error" class="error-report"><?php echo $this->errors['tel']; ?></span>
+        <input type = "text" placeholder = "### ###-###" value="" name="tel" id="tel"/> <span id="tel_error" class="error-report"></span>
       </p>
       <input type="hidden" id="authenticity_token" name="authenticity_token" value="<%= form_authenticity_token %>">
       <p>

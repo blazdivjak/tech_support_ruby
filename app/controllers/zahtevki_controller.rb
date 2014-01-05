@@ -111,7 +111,7 @@ class ZahtevkiController < ApplicationController
 
     else
       if(params[:search])
-        @tickets = Ticket.where(["id = ?  OR problem = ? OR date = ? OR podrocje = ? OR description = ? OR phone = ? OR admin = ? OR state  = ? AND user_id = ?", params[:search],params[:search],params[:search],params[:search],params[:search],params[:search],params[:search],params[:search],session[:user_id]])
+        @tickets = Ticket.where(["(id = ?  OR problem = ? OR date = ? OR podrocje = ? OR description = ? OR phone = ? OR admin = ? OR state  = ?) AND user_id = ?", params[:search],params[:search],params[:search],params[:search],params[:search],params[:search],params[:search],params[:search],session[:user_id]])
       else
       @tickets = Ticket.find_all_by_user_id(session[:user_id])
       end

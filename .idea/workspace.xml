@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d100ef78-6397-41e6-9283-5679a93afc9d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/zahtevki/dodaj_admin.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/static/_menu_user.html.erb" afterPath="$PROJECT_DIR$/app/views/static/_menu_user.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/zahtevki/dodaj.html.erb" afterPath="$PROJECT_DIR$/app/views/zahtevki/dodaj.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/zahtevki/pregled.html.erb" afterPath="$PROJECT_DIR$/app/views/zahtevki/pregled.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/zahtevki/uredi.html.erb" afterPath="$PROJECT_DIR$/app/views/zahtevki/uredi.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/zahtevki_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/zahtevki_controller.rb" />
     </list>
     <ignored path="rubyrubyrubyrubywohohoho.iws" />
@@ -17,7 +10,7 @@
     <file path="/database.yml" changelist="d100ef78-6397-41e6-9283-5679a93afc9d" time="1388872960043" ignored="false" />
     <file path="/Gemfile" changelist="d100ef78-6397-41e6-9283-5679a93afc9d" time="1388873156963" ignored="false" />
     <file path="/uredi.html.erb" changelist="d100ef78-6397-41e6-9283-5679a93afc9d" time="1388920715933" ignored="false" />
-    <file path="/zahtevki_controller.rb" changelist="d100ef78-6397-41e6-9283-5679a93afc9d" time="1388927066224" ignored="false" />
+    <file path="/zahtevki_controller.rb" changelist="d100ef78-6397-41e6-9283-5679a93afc9d" time="1388927625233" ignored="false" />
     <file path="/routes.rb" changelist="d100ef78-6397-41e6-9283-5679a93afc9d" time="1388926542077" ignored="false" />
     <file path="/message.rb" changelist="d100ef78-6397-41e6-9283-5679a93afc9d" time="1388920421663" ignored="false" />
     <file path="/_menu_user.html.erb" changelist="d100ef78-6397-41e6-9283-5679a93afc9d" time="1388922644808" ignored="false" />
@@ -42,19 +35,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="zahtevki_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="zahtevki_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/zahtevki_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="159" selection-start="3529" selection-end="3529" vertical-scroll-proportion="0.0">
+            <state line="113" column="292" selection-start="3662" selection-end="3662" vertical-scroll-proportion="0.4269103">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="uredi.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="uredi.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/zahtevki/uredi.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="25" selection-start="250" selection-end="250" vertical-scroll-proportion="0.33737025">
+            <state line="13" column="25" selection-start="250" selection-end="250" vertical-scroll-proportion="-8.125">
               <folding />
             </state>
           </provider>
@@ -105,8 +98,8 @@
         <option value="$PROJECT_DIR$/app/views/zahtevki/dodaj_admin.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/zahtevki/pregled.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/zahtevki_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/zahtevki/uredi.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/zahtevki_controller.rb" />
       </list>
     </option>
   </component>
@@ -755,13 +748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/zahtevki_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="159" selection-start="3529" selection-end="3529" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/zahtevki/pregled.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="10" selection-start="567" selection-end="677" vertical-scroll-proportion="-13.75">
@@ -771,7 +757,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/zahtevki/uredi.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="25" selection-start="250" selection-end="250" vertical-scroll-proportion="0.33737025">
+        <state line="13" column="25" selection-start="250" selection-end="250" vertical-scroll-proportion="-8.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/zahtevki_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="292" selection-start="3662" selection-end="3662" vertical-scroll-proportion="0.4269103">
           <folding />
         </state>
       </provider>
